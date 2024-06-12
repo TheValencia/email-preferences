@@ -1,0 +1,716 @@
+
+
+
+  
+  %%[
+
+
+SET @subkey = _subscriberkey
+
+set @subscriberRows = RetrieveSalesforceObjects(
+   "Contact", "FirstName,LastName,Email,Type_of_Connection_to_Kidney_Disease__c,Spanish_Only__c,Research_News__c,Advocacy_and_Action__c,Foundation_News_and_Community_Updates__c,NKF_Events__c,Wellness_Tips_Recipes_Special_Issues__c,Clinical_Research_Projects__c,Patient_and_Community_Support__c,Primary_Connection_to_Kidney_Disease__c,COVID_19_Updates__c,MailingPostalCode,Professional_Category__c,Clinical_Tools_and_CE_Alerts__c,Nephrology_Journal_Club_Updates__c,Research_Grant_Opportunities__c,Professional_Member__c,HasoptedoutofEmail",
+   "Id", "=", @subkey )
+
+if RowCount(@subscriberRows) > 0 then /* there should only be one row */
+
+  set @subscriberRow = Row(@subscriberRows, 1)
+  set @firstName = Field(@subscriberRow, "FirstName")
+  set @lastName = Field(@subscriberRow, "LastName")
+  set @Email = Field(@subscriberRow, "Email")MailingPostalCode
+  set @Zip = Field(@subscriberRow, "MailingPostalCode")
+ SET @Kidney = Field(@subscriberRow, "Primary_Connection_to_Kidney_Disease__c")
+ SET @TypeofConnectiontoKidneyDisease = Field(@subscriberRow, "Type_of_Connection_to_Kidney_Disease__c")
+ SET @ProfessionalCategory = Field(@subscriberRow, "Professional_Category__c")
+ SET @Suscríbaseespañol = Field(@subscriberRow, "Spanish_Only__c")
+ SET @CovidIUpdates = Field(@subscriberRow, "COVID_19_Updates__c")
+ SET @ResearchNews = Field(@subscriberRow, "Research_News__c")
+ SET @AdvocacyAction = Field(@subscriberRow, "Advocacy_and_Action__c")
+ SET @FoundationNewsCommunityEvents = Field(@subscriberRow, "Foundation_News_and_Community_Updates__c")
+ SET @NKFEvents = Field(@subscriberRow, "NKF_Events__c")
+ SET @WellnessTips_Recipes_SpecialIssues = Field(@subscriberRow, "Wellness_Tips_Recipes_Special_Issues__c")
+ SET @InterestedinClinicalTrials = Field(@subscriberRow, "Clinical_Research_Projects__c")
+ SET @InformationforYourPatients = Field(@subscriberRow, "Patient_and_Community_Support__c")
+ SET @ClinicalToolsandCEAlerts = Field(@subscriberRow, "Clinical_Tools_and_CE_Alerts__c")
+ SET @ResearchGrantOpportunities = Field(@subscriberRow, "Research_Grant_Opportunities__c")
+ SET @ProfessionalMembershipUpdates = Field(@subscriberRow, "Professional_Member__c")
+ SET @NephrologyJournalClubUpdates = Field(@subscriberRow, "Nephrology_Journal_Club_Updates__c")/*Cant Find*/
+ set @Unsubscribe = Field(@subscriberRow, "HasoptedoutofEmail")
+endif
+
+]%%
+
+
+    <base href="http://www3.kidney.org">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="https://cloud.email.kidney.org/UnsubCSS" media="all">
+
+   
+
+  
+  
+
+%%=v(@subkey)=%%
+
+<header class="bg--white">
+<div class="margin-y--md margin-x--md md--margin-left--xxl max-width--lg"> 
+     <a href="https://www.kidney.org" rel="home"><img class="display--block" src="https://www.kidney.org/sites/default/files/nkflogo.svg"></a>
+</div>
+</header>
+    <div class="padding-bottom--xxl">
+        <div class="padding-x--md md--padding-x--xxl prose center">
+            <div class="border-width--none border-top-width--sm border-color--gray-4 border-style--solid padding-y--lg margin-y--lg">
+                <form accept-charset="UTF-8" method="post" action=" %%=CloudPagesURL(6423,'subkey',@subkey)=%%" class="form">
+
+
+ <div>
+ 
+   <input name="Subkey" type="hidden" value="%%=v(@subkey)=%%">
+
+ 
+
+  <div class="font-size--xxl margin-top--sm">
+<h1>Manage Your&nbsp;Preferences</h1>
+
+<p style="font-size:20px; letter-spacing: 0em;">Adjust your preferences below to get information that is relevant and important to you.</p>
+</div>
+
+   
+   <div class="display--flex flex-wrap--wrap">
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 md--padding-right--md first_name pd-text     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28024pi_219342_28024">
+                <span class="bold field-label__text">
+                    First Name
+                </span>
+              </label>
+       
+              <input type="text" name="FirstName" id="FirstName" value="%%=v(@FirstName)=%%" class="text" size="30" maxlength="40" onchange="" onfocus="">
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 last_name pd-text     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28026pi_219342_28026">
+                <span class="bold field-label__text">
+                    Last Name
+                </span>
+              </label>
+       
+              <input type="text" name="LastName" id="LastName" value="%%=v(@LastName)=%%" class="text" size="30" maxlength="80" onchange="" onfocus="">
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 md--padding-right--md email pd-text required    ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28028pi_219342_28028">
+                <span class="bold field-label__text">
+                    Email
+                </span>
+              </label>
+       
+              <input type="email" name="Email" id="Email" value="%%=v(@Email)=%%" class="text" size="30" maxlength="255" onchange="" onfocus="">
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 zip pd-text     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_44675pi_219342_44675">
+                <span class="bold field-label__text">
+                    Zip
+                </span>
+              </label>
+       
+              <input type="text" name="Zip" id="Zip" value="%%=v(@Zip)=%%" class="text" size="30" maxlength="32" onchange="" onfocus="">
+        
+ 
+
+             
+      
+          </div>
+     </div>
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+ // This will be called when the DOM is ready and everything has been loaded.
+    $('#KP').click(function(){  //Adds an event to 
+        $('#TypeKD').toggle('slow');
+      document.getElementById('FFKP_').style.display = 'none';
+document.getElementById('HCP_').style.display = 'none';
+
+    });
+});
+
+  
+$(function() {
+ // This will be called when the DOM is ready and everything has been loaded.
+    $('#FFKP').click(function(){  //Adds an event to 
+        $('#FFKP_').toggle('slow');
+            document.getElementById('TypeKD').style.display = 'none';
+document.getElementById('HCP_').style.display = 'none';
+
+    });
+});
+  
+  
+  $(function() {
+ // This will be called when the DOM is ready and everything has been loaded.
+    $('#HCP').click(function(){  //Adds an event to 
+        $('#HCP_').toggle('slow');
+            document.getElementById('FFKP_').style.display = 'none';
+document.getElementById('TypeKD').style.display = 'none';
+
+    });
+});
+  
+    $(function() {
+ // This will be called when the DOM is ready and everything has been loaded.
+    $('#LD').click(function(){  //Adds an event to 
+               document.getElementById('HCP_').style.display = 'none';
+            document.getElementById('FFKP_').style.display = 'none';
+document.getElementById('TypeKD').style.display = 'none';
+
+    });
+});
+  
+  
+      $(function() {
+ // This will be called when the DOM is ready and everything has been loaded.
+    $('#other').click(function(){  //Adds an event to 
+               document.getElementById('HCP_').style.display = 'none';
+            document.getElementById('FFKP_').style.display = 'none';
+document.getElementById('TypeKD').style.display = 'none';
+
+    });
+});
+  
+</script>    
+ 
+    
+ 
+
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--53 md--padding-right--md clear--both Primary_Connection_to_Kidney_Disease pd-select     form-field-primary">
+      <div class="">
+       
+        <label class="field-label" for="219342_28030pi_219342_28030">
+                <span class="bold field-label__text">
+                    Connection to Kidney Disease
+                </span>
+              </label>
+       
+<br>
+
+              
+<input type="radio" id="KP" name="Kidney" value="I am a kidney patient">
+         <label>I am a kidney patient</label> 
+        <br>
+<input type="radio" id="Risk" name="Risk" value="I am at risk for kidney disease">
+<label>I am at risk for kidney disease</label> 
+        <br>
+<input type="radio" id="FFKP" name="Kidney" value="I am a family/friend of a kidney patient">
+<label>I am a family/friend of a kidney patient</label> 
+        <br>
+<input type="radio" id="HCP" name="Kidney" value="I am a healthcare professional">
+        <label>I am a healthcare professional</label>  
+        <br>
+<input type="radio" id="LD" name="Kidney" value="I am a living donor">
+        <label>I am a living donor</label> 
+
+        <br>
+<input type="radio" id="other" name="Kidney" value="Other">
+        <label>Other</label> 
+
+        <br><br>
+
+
+             
+      
+          </div>
+     </div>
+
+ <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 clear--both " id="TypeKD" style="display:none;">
+      <div class="TypeKD">
+       
+        <label class="field-label" for="219342_47611pi_219342_47611">
+                <span class="bold field-label__text">
+                    Type of Connection to Kidney Disease
+                </span>
+              </label>
+       
+              <select name="TypeofConnectiontoKidneyDisease" id="TypeofConnectiontoKidneyDisease" class="select">
+ <option value="" selected="selected"></option>
+<option value="I am at risk for kidney disease">I am at risk for kidney disease</option>
+<option value="I have CKD Stage 1 or 2">I have CKD Stage 1 or 2</option>
+<option value="I have CKD Stage 3">I have CKD Stage 3</option>
+<option value="I have CKD stage 4 or 5 and not on dialysis">I have CKD stage 4 or 5 and not on dialysis</option>
+<option value="I am on dialysis">I am on dialysis</option>
+<option value="I am a transplant recipient">I am a transplant recipient</option>
+<option value="I have kidney cancer">I have kidney cancer</option>
+<option value="I have kidney stones">I have kidney stones</option>
+</select>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 clear--both Type_of_Connection___Family_Friend pd-select" style="display:none;" id="FFKP_">
+      <div class="FFKP_">
+       
+        <label class="field-label" for="219342_47613pi_219342_47613">
+                <span class="bold field-label__text">
+                    Type of Connection to Kidney Disease
+                </span>
+              </label>
+       
+              <select name="TypeofConnectiontoKidneyDisease" id="TypeofConnectiontoKidneyDisease" class="select"><option value="" selected="selected"></option>
+<option value="A family member/friend is at risk for kidney disease">A family member/friend is at risk for kidney disease</option>
+<option value="A family member/friend has CKD 1 or 2">A family member/friend has CKD 1 or 2</option>
+<option value="A family member/friend has CKD 3">A family member/friend has CKD 3</option>
+<option value="A family member/friend has CKD 4 or 5 and is not on dialysis">A family member/friend has CKD 4 or 5 and is not on dialysis</option>
+<option value="A family member/friend is on dialysis">A family member/friend is on dialysis</option>
+<option value="A family member/friend is a transplant recipient">A family member/friend is a transplant recipient</option>
+<option value="A family member/friend is a living donor">A family member/friend is a living donor</option>
+<option value="A family member/friend is a deceased donor">A family member/friend is a deceased donor</option>
+<option value="A family member/friend is a deceased patient">A family member/friend is a deceased patient</option>
+<option value="A family member/friend has kidney cancer">A family member/friend has kidney cancer</option>
+<option value="A family member/friend has kidney stones">A family member/friend has kidney stones</option>
+</select>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field md--width--50 clear--both Professional_Category pd-select     form-field-secondary dependentFieldSlave dependentField" id="HCP_" style="display:none;">
+      <div class="HCP_">
+       
+        <label class="field-label" for="219342_44677pi_219342_44677">
+                <span class="bold field-label__text">
+                    Professional Category
+                </span>
+              </label>
+       
+              <select name="ProfessionalCategory" id="ProfessionalCategory" class="select" onchange=""><option value="" selected="selected"></option>
+<option value="Nurse Technican">Nurse Technican</option>
+<option value="Resident">Resident</option>
+<option value="Social Worker">Social Worker</option>
+<option value="Dietitian">Dietitian</option>
+<option value="Physician Assistant">Physician Assistant</option>
+<option value="Fellows">Fellows</option>
+<option value="Physician">Physician</option>
+<option value="Scientist">Scientist</option>
+<option value="Pharmacist">Pharmacist</option>
+<option value="Nurse Practitioner">Nurse Practitioner</option>
+<option value="Technician">Technician</option>
+<option value="Nurse">Nurse</option>
+<option value="Other">Other</option>
+<option value="Student">Student</option>
+</select>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Spanish_Language pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_110167pi_219342_110167">
+                <span class="bold field-label__text">
+                    Suscríbase a correos electrónicos en español
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="Suscrbaseespaol" id="Suscrbaseespaol" value="true" %%[if @Suscríbaseespañol == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field covid-text-before COVID_19_Updates pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_104997pi_219342_104997">
+                <span class="bold field-label__text">
+                    SEND ME COVID-19 UPDATES
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="CovidIUpdates" id="CovidIUpdates" value="true" %%[if @CovidIUpdates == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field add-text-before Research_News_Content pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28032pi_219342_28032">
+                <span class="bold field-label__text">
+                    Research News
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="ResearchNews" id="ResearchNews" value="true" %%[if @ResearchNews == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Get the latest research updates and opportunities to participate in clinical trials.
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Advocacy___Action pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28034pi_219342_28034">
+                <span class="bold field-label__text">
+                    Advocacy & Action
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="AdvocacyAction" id="AdvocacyAction" value="true" %%[if @AdvocacyAction == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Sign up to receive important legislation updates. Learn how you can make your voice heard on Capitol Hill to better the quality of life for kidney patients.
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Foundation_News___Community_Updates pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28036pi_219342_28036">
+                <span class="bold field-label__text">
+                    Foundation News & Community Events
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="FoundationNewsCommunityEvents" id="FoundationNewsCommunityEvents" value="true" %%[if @FoundationNewsCommunityEvents == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Hear about new patient programs and community events in your area (e.g. free health checks, gift planning, patient seminars etc.).
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  NKF_Events pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28038pi_219342_28038">
+                <span class="bold field-label__text">
+                    NKF Events
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="NKFEvents" id="NKFEvents" value="true" %%[if @NKFEvents == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Receive updates about NKF fundraising events in your local community.
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Wellness_Tips__Recipes__Special_Issues pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_28040pi_219342_28040">
+                <span class="bold field-label__text">
+                    Wellness Tips, Recipes, Special Issues
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="WellnessTips_Recipes_SpecialIssues" id="WellnessTips_Recipes_SpecialIssues" value="true" %%[if @WellnessTips_Recipes_SpecialIssues == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Learn more about healthy diet and exercise for your specific stage of kidney disease or transplant.
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Interested_in_Clinical_Trials pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_157601pi_219342_157601">
+                <span class="bold field-label__text">
+                    Interested in Clinical Trials
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="InterestedinClinicalTrials" id="InterestedinClinicalTrials" value="true" %%[if @InterestedinClinicalTrials == "true" then]%%checked%%[endif]%%></span></span>
+        
+        <span class="color--gray-3 margin-left--lg display--block font-size--sm">
+         Learn more about upcoming clinical trial research.
+        </span>
+             
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field add-pref-before Information_for_my_patients pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_38905pi_219342_38905">
+                <span class="bold field-label__text">
+                    Information for Your Patients
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="InformationforYourPatients" id="InformationforYourPatients" value="True" %%[if @InformationforYourPatients == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Clinical_tools_and_CE_alerts pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_38907pi_219342_38907">
+                <span class="bold field-label__text">
+                    Clinical Tools and CE Alerts
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="ClinicalToolsandCEAlerts" id="ClinicalToolsandCEAlerts" value="True" %%[if @ClinicalToolsandCEAlerts == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Research_Grant_Opportunities pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_38909pi_219342_38909">
+                <span class="bold field-label__text">
+                    Research Grant Opportunities
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="ResearchGrantOpportunities" id="ResearchGrantOpportunities" value="true" %%[if @ResearchGrantOpportunities == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Professional_Membership_Email_Updates pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_46193pi_219342_46193">
+                <span class="bold field-label__text">
+                    Professional Membership Updates
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="ProfessionalMembershipUpdates" id="ProfessionalMembershipUpdates" value="true" %%[if @ProfessionalMembershipUpdates == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+     <div class="width--100 padding-bottom--xs padding-top--md form-field  Journal_Club pd-checkbox     ">
+      <div class="">
+       
+        <label class="field-label" for="219342_138840pi_219342_138840">
+                <span class="bold field-label__text">
+                    Nephrology Journal Club Updates
+                </span>
+              </label>
+       
+              <span class="value"><span><input type="checkbox" name="NephrologyJournalClubUpdates" id="NephrologyJournalClubUpdates" value="true" %%[if @NephrologyJournalClubUpdates == "true" then]%%checked%%[endif]%%></span></span>
+        
+ 
+
+             
+      
+          </div>
+     </div>
+    
+   
+    
+   </div>
+
+ <p style="position:absolute; width:190px; left:-9999px; top: -9999px;visibility:hidden;">
+  <label for="pi_extra_field">Comments</label>
+  <input type="text" name="pi_extra_field" id="pi_extra_field">
+
+ </p>
+  
+   
+   <!-- forces IE5-8 to correctly submit UTF8 content  -->
+
+           <input name="submitted" type="hidden" value="true"><br>
+
+   <input name="_utf8" type="hidden" value="☃">
+   <div class="display--flex justify-content--center align-items--center">
+   <div class="text-align--center padding-top--lg">
+   <div class="unsubContainer padding-top--xs padding-bottom--lg">
+
+        <a href="%%=CloudPagesURL(6423,'Unsubscribe','UnsubAll')=%%">Unsubscribe from All</a>
+  <div class="font-size--sm color--gray-3">This will unsubscribe you from all NKF informational emails. Don't worry, you'll still receive transactional emails (e.g., receipts for membership purchases, donations), and you can resubscribe at any time.</div>
+        </div>
+           <div class="btn--gradient-orange-white">   
+           <input type="submit" style="border: none;" accesskey="s" value="Save Your Preferences" />
+         </div>
+   </div>
+   </div>
+  
+  
+ 
+
+
+ </div>
+<input type="hidden" name="hiddenDependentFields" id="hiddenDependentFields" value="" />
+            
+              
+              </form>
+
+
+
+            </div>
+        </div>
+    </div>
+    
+ <script>
+ window.addEventListener("DOMContentLoaded", function() {
+       document.querySelector('.is_do_not_email').classList.add('hide');
+      document.querySelector('.unsubContainer').classList.remove('hide');
+
+//Insert Text for Section Headers
+
+function insertText(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode);
+}
+
+var covidIntro = document.createElement('div');
+covidIntro.className = 'padding-top--xxl width--100';
+covidIntro.innerHTML = '<h3>Get Updates about COVID-19</h3> <p>Would you like to recieve updates about COVID-19 and how it affects kidney patients?</p>'
+   var covidTarget = document.querySelector('.covid-text-before');
+   insertText(covidIntro, covidTarget);
+ 
+var newEl = document.createElement('div');
+newEl.className = 'padding-top--md width--100';
+newEl.innerHTML = '<div class="">At the National Kidney Foundation, we want to provide high-quality content that is important to you. Choose from the list below to let us know which news and information you want to receive.</div>';
+var ref = document.querySelector('.add-text-before');
+insertText(newEl, ref);
+ 
+var prefDiv = document.createElement('div');
+prefDiv.className = 'padding-bottom--xxs padding-top--md';
+prefDiv.innerHTML = '<div class="bold">For Healthcare Professionals</div>';
+var divTarget = document.querySelector('.add-pref-before');
+insertText(prefDiv, divTarget);
+
+//Do the Unsubscribe Button Submit   
+var hiddenBox = document.getElementById('219342_45791pi_219342_45791');
+var unsubscribeLink = document.querySelector('.unsubscribe-btn');
+var theForm = document.querySelector('.form');
+hiddenBox.setAttribute("onchange", function submit() {document.getElementsByClassName('subButton').click();
+});
+
+
+function checkUnsubscribe(e) {
+console.log('clicked');
+e.preventDefault();
+hiddenBox.checked = true;
+}
+
+
+ unsubscribeLink.addEventListener('click', function(e) {
+checkUnsubscribe(e);
+ });
+ });
+
+ </script>
+</body>
+
+</html>
+
+
+
+
+
